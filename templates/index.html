@@ -55,11 +55,13 @@
             const score = result['score'];
             alert(`Twój wynik: ${score}/5`)
             saveScore(score);
-            updateScore();
         }
 
         function saveScore(value) {
-            localStorage.setItem('score', value);
+            lastScore = localStorage.getItem('score') || 0;
+            if(value > lastScore) {
+                localStorage.setItem('score', value);
+            }
             updateScore();
         }
 
